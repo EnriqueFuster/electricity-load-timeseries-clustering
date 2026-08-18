@@ -75,9 +75,9 @@ This setup is intended to recover relatively stable consumption typologies at me
 
 A different study could use individual days as observations. Each meter-year would then be split into 24-hour vectors:
 
-\[
+$$
 \mathbf{x}_{i,d} = (x_0, x_1, \ldots, x_{23}).
-\]
+$$
 
 Clusters in that setting would describe recurring daily shapes: morning peaks, evening peaks, double peaks, flat demand, night-intensive profiles, and so on.
 
@@ -202,17 +202,17 @@ Normalization changes the meaning of similarity. Whether consumption magnitude s
 
 ### 5.1 Z-score per profile (`zscore`)
 
-\[
+$$
 z_{it} = \frac{x_{it} - \bar{x}_i}{s_i}.
-\]
+$$
 
 Each profile is centred on its own mean and scaled by its own standard deviation. The resulting comparison is driven mainly by relative shape. Two meters with very different annual consumption can therefore be close if their normalized weekly patterns are similar.
 
 ### 5.2 Unit sum (`unit_sum`)
 
-\[
+$$
 p_{it} = \frac{x_{it}}{\sum_t x_{it}}.
-\]
+$$
 
 Each value becomes a share of the profile's total energy. Total consumption is removed, while the distribution of energy through time is retained.
 
@@ -228,10 +228,10 @@ Original consumption values are kept for interpretation even when the clustering
 
 ### 6.1 Euclidean distance
 
-\[
+$$
 d(\mathbf{x},\mathbf{y}) =
 \sqrt{\sum_j (x_j-y_j)^2}.
-\]
+$$
 
 Euclidean distance compares matching coordinates directly. In a typical-week representation, 19:00 on one profile is compared with 19:00 on the other. K-means is closely tied to this geometry because its objective minimizes squared Euclidean deviations from cluster centroids.
 
@@ -239,9 +239,9 @@ The distance is fast and easy to interpret, but it has no mechanism for forgivin
 
 ### 6.2 Manhattan distance
 
-\[
+$$
 d(\mathbf{x},\mathbf{y}) = \sum_j |x_j-y_j|.
-\]
+$$
 
 Manhattan distance also compares aligned coordinates, but it sums absolute rather than squared deviations. A single large coordinate difference therefore has less leverage than it does under a squared-error objective.
 
@@ -325,10 +325,10 @@ The final partition therefore depends on both SOM training and the later groupin
 
 A finite Gaussian mixture assumes that observations come from K Gaussian component densities:
 
-\[
+$$
 p(\mathbf{x}) = \sum_{k=1}^{K}\pi_k
 \mathcal{N}(\mathbf{x}\mid\mu_k,\Sigma_k).
-\]
+$$
 
 Expectation-maximisation is used to estimate the mixture weights, component means and covariance structure. Each observation receives posterior probabilities for the fitted components, and the final class assignment is derived from those probabilities.
 
@@ -410,10 +410,10 @@ This is **conditional subsample stability**: it measures sensitivity to which me
 
 ### 9.3 Dunn index
 
-\[
+$$
 D = \frac{\min\text{ between-cluster separation}}
          {\max\text{ within-cluster diameter}}.
-\]
+$$
 
 Higher values correspond to clusters that are compact relative to their separation. Because both the numerator and denominator depend on extremes, the index can be sensitive to atypical observations.
 
