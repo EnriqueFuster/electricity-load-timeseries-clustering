@@ -7,6 +7,8 @@ of normalization, distance and clustering method. The output includes cluster
 profiles, assignments and validation diagnostics so that the resulting groups
 can be inspected rather than accepted on the basis of a single score.
 
+**Live application:** [Open the deployed Shiny app](https://enriquefuster-electricity-load-timeseries-clustering.share.connect.posit.cloud/)
+
 ## Methodology
 
 Reasonable modelling choices can produce noticeably different partitions from
@@ -42,6 +44,20 @@ more detailed comparison.
 > C., Casado-Mansilla, D. and Borges, C. E. (2025). “A data-driven methodology
 > for deriving electricity consumption typologies from smart meters.” *Energy
 > Reports*, 14, 2420–2434. https://doi.org/10.1016/j.egyr.2025.09.002
+
+## Application preview
+
+The deployed app covers experiment design, benchmark comparison and detailed
+inspection of the selected clustering result.
+
+![Experiment builder for configuring compatible clustering workflows.](docs/assets/app-preview/experiment-builder.jpg)
+
+![Benchmark comparison with method filters and validation charts.](docs/assets/app-preview/benchmark-comparison.jpg)
+
+![Annual cluster heatmaps for the selected model.](docs/assets/app-preview/annual-cluster-heatmaps.jpg)
+
+Open the [live application](https://enriquefuster-electricity-load-timeseries-clustering.share.connect.posit.cloud/)
+to explore the complete interactive views.
 
 ![Hierarchical DTW result showing the dendrogram, three cluster profiles and the ordered individual weekly curves.](docs/assets/hierarchical-dtw-overview.png)
 
