@@ -6,7 +6,7 @@ load_project_functions(".")
 artifact <- readRDS("results/demo/shiny_benchmark.rds")
 result <- artifact$result
 candidate <- result$metrics[
-    result$metrics$status == "ok" &
+  result$metrics$status == "ok" &
     result$metrics$representation == "typical_week" &
     result$metrics$algorithm == "hierarchical" &
     result$metrics$k == 3L,

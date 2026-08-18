@@ -46,17 +46,21 @@ build_dendrogram_plot <- function(fit, title = "DTW hierarchical structure") {
     height <- model$height[node]
     segments[[node]] <- rbind(
       data.frame(x = left$x, y = left$y, xend = left$x, yend = height,
-        branch = branch_cluster(left$leaves)),
+                 branch = branch_cluster(left$leaves)),
       data.frame(x = right$x, y = right$y, xend = right$x, yend = height,
-        branch = branch_cluster(right$leaves)),
+                 branch = branch_cluster(right$leaves)),
       data.frame(x = left$x, y = height, xend = right$x, yend = height,
-        branch = branch_cluster(node_leaves[[node]]))
+                 branch = branch_cluster(node_leaves[[node]]))
     )
   }
   segments <- do.call(rbind, segments)
   merges_below_cut <- length(model$height) + 1L - k
   lower <- if (merges_below_cut > 0L) model$height[merges_below_cut] else 0
-  upper <- if (merges_below_cut < length(model$height)) model$height[merges_below_cut + 1L] else max(model$height)
+  upper <- if (merges_below_cut < length(model$height)) {
+    model$height[merges_below_cut + 1L]
+  } else {
+    max(model$height)
+  }
   cut_height <- mean(c(lower, upper))
   label_gap <- max(model$height) * 0.035
   labels <- data.frame(
@@ -70,17 +74,24 @@ build_dendrogram_plot <- function(fit, title = "DTW hierarchical structure") {
       ggplot2::aes(x = x, y = y, xend = xend, yend = yend, colour = branch),
       linewidth = 0.78, lineend = "round"
     ) +
-    ggplot2::geom_hline(yintercept = cut_height, colour = palette$accent,
-      linewidth = 0.7, linetype = "22", alpha = 0.9) +
-    ggplot2::geom_text(data = labels,
+    ggplot2::geom_hline(
+      yintercept = cut_height, colour = palette$accent,
+      linewidth = 0.7, linetype = "22", alpha = 0.9
+    ) +
+    ggplot2::geom_text(
+      data = labels,
       ggplot2::aes(x = x, y = y, label = label, colour = cluster),
-      inherit.aes = FALSE, angle = 55, hjust = 1, size = 3) +
+      inherit.aes = FALSE, angle = 55, hjust = 1, size = 3
+    ) +
     ggplot2::scale_colour_manual(values = branch_colours, name = "Cluster") +
     ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = c(0.015, 0.015))) +
     ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = c(0.09, 0.06))) +
     ggplot2::labs(
       title = title,
-      subtitle = sprintf("Complete linkage over constrained DTW distances · cut into %d clusters", k),
+      subtitle = sprintf(
+        "Complete linkage over constrained DTW distances · cut into %d clusters",
+        k
+      ),
       caption = "Coloured branches fall within the selected cut; the dashed line marks its height.",
       x = NULL, y = "DTW merge distance"
     ) +

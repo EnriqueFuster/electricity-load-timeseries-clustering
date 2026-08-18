@@ -283,7 +283,7 @@ test_that("inputs use a guided data and model-design workspace", {
     test_path("..", "..", "app", "bootstrap", "load_app.R"),
     warn = FALSE
   ),
-    collapse = "\n"
+  collapse = "\n"
   )
   css <- paste(readLines(test_path("..", "..", "app", "www", "styles.css"), warn = FALSE),
     collapse = "\n"
@@ -333,7 +333,7 @@ test_that("primary workspaces share one anchored section-header system", {
     test_path("..", "..", "app", "ui", "help_content.R"),
     warn = FALSE
   ),
-    collapse = "\n"
+  collapse = "\n"
   )
   css <- paste(readLines(test_path("..", "..", "app", "www", "styles.css"), warn = FALSE),
     collapse = "\n"

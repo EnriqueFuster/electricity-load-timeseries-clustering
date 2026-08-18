@@ -46,9 +46,6 @@ theory_glossary_ui <- function() {
           ))
         )#,
         # shiny::div(
-        #   class = "theory-glossary-count",
-        #   shiny::strong(length(terms)),
-        #   shiny::span("defined terms")
         # )
       ),
       shiny::div(

@@ -213,7 +213,8 @@ build_model_selection_filters <- function() {
       shiny::span(
         paste0(
           "The same filters are applied to every comparison chart and the results table. ",
-          "They only change what is displayed; fitted results and the recommendation remain unchanged."
+          "They only change what is displayed; fitted results and the recommendation remain ",
+          "unchanged."
         )
       )
     )
@@ -272,24 +273,42 @@ build_selected_model_analysis <- function() {
         ),
         shiny::div(
           class = "summary-metric-grid summary-metric-grid-nine",
-          summary_metric("Algorithm", "active_algorithm", "diagram-3", "metric-blue",
-            "Method used for the selected result."),
-          summary_metric("Clusters", "active_clusters", "collection", "metric-coral",
-            "Number of groups, excluding noise."),
-          summary_metric("Silhouette", "recommended_silhouette", "activity", "metric-indigo",
-            "Mean cohesion and separation, from -1 to 1."),
-          summary_metric("Stability", "recommended_stability", "repeat", "metric-violet",
-            "Agreement across conditional subsamples."),
-          summary_metric("Smallest cluster", "active_smallest_cluster", "pie-chart", "metric-blue",
-            "Share assigned to the least common group."),
-          summary_metric("Noise", "active_noise", "exclamation-circle", "metric-coral",
-            "Share left unassigned by the method."),
-          summary_metric("Separation", "active_separation", "arrows-angle-expand", "metric-indigo",
-            "Mean silhouette for the selected partition."),
-          summary_metric("Repeatability", "active_repeatability", "arrow-repeat", "metric-violet",
-            "Conditional subsample stability score."),
-          summary_metric("Concentration", "active_concentration", "bar-chart", "metric-coral",
-            "Share assigned to the largest cluster.")
+          summary_metric(
+            "Algorithm", "active_algorithm", "diagram-3", "metric-blue",
+            "Method used for the selected result."
+          ),
+          summary_metric(
+            "Clusters", "active_clusters", "collection", "metric-coral",
+            "Number of groups, excluding noise."
+          ),
+          summary_metric(
+            "Silhouette", "recommended_silhouette", "activity", "metric-indigo",
+            "Mean cohesion and separation, from -1 to 1."
+          ),
+          summary_metric(
+            "Stability", "recommended_stability", "repeat", "metric-violet",
+            "Agreement across conditional subsamples."
+          ),
+          summary_metric(
+            "Smallest cluster", "active_smallest_cluster", "pie-chart", "metric-blue",
+            "Share assigned to the least common group."
+          ),
+          summary_metric(
+            "Noise", "active_noise", "exclamation-circle", "metric-coral",
+            "Share left unassigned by the method."
+          ),
+          summary_metric(
+            "Separation", "active_separation", "arrows-angle-expand", "metric-indigo",
+            "Mean silhouette for the selected partition."
+          ),
+          summary_metric(
+            "Repeatability", "active_repeatability", "arrow-repeat", "metric-violet",
+            "Conditional subsample stability score."
+          ),
+          summary_metric(
+            "Concentration", "active_concentration", "bar-chart", "metric-coral",
+            "Share assigned to the largest cluster."
+          )
         ),
         bslib::card(
           class = "executive-conclusion-card",
@@ -577,26 +596,26 @@ build_selected_model_analysis <- function() {
           )
         ),
         shiny::div(
-            class = "diagnostic-panel assignment-panel assignment-panel-full",
-            help_header(
-              "Cluster assignments",
-              paste0(
-                "One row per accepted profile. Cluster share gives group prevalence; ",
-                "silhouette compares the assigned and nearest alternative clusters; ",
-                "separation margin is alternative-cluster dissimilarity minus mean peer ",
-                "dissimilarity. Positive larger margins support clearer assignments. ",
-                "Optional columns expose evidence available only for the active algorithm."
-              )
+          class = "diagnostic-panel assignment-panel assignment-panel-full",
+          help_header(
+            "Cluster assignments",
+            paste0(
+              "One row per accepted profile. Cluster share gives group prevalence; ",
+              "silhouette compares the assigned and nearest alternative clusters; ",
+              "separation margin is alternative-cluster dissimilarity minus mean peer ",
+              "dissimilarity. Positive larger margins support clearer assignments. ",
+              "Optional columns expose evidence available only for the active algorithm."
+            )
+          ),
+          help_action(
+            shiny::downloadButton("download_assignments",
+              "Assignments",
+              class = "download-button compact-download"
             ),
-            help_action(
-              shiny::downloadButton("download_assignments",
-                "Assignments",
-                class = "download-button compact-download"
-              ),
-              "Download assignments from the selected clustering result."
-            ),
-            table_variable_selector("assignments_table_columns"),
-            DT::DTOutput("assignments_table")
+            "Download assignments from the selected clustering result."
+          ),
+          table_variable_selector("assignments_table_columns"),
+          DT::DTOutput("assignments_table")
         )
       ),
       bslib::nav_panel(

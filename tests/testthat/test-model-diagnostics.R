@@ -92,16 +92,16 @@ test_that("Shiny exposes shared and method-specific diagnostic workspaces", {
   expect_match(ui_source, "The diagonal is zero", fixed = TRUE)
   expect_match(ui_source, "Hover a cell to identify both profiles", fixed = TRUE)
   expect_match(ui_source, "more distant than roughly 95%", fixed = TRUE)
-  expect_match(ui_source, 'col_widths = c(8, 4)', fixed = TRUE)
+  expect_match(ui_source, "col_widths = c(8, 4)", fixed = TRUE)
   expect_match(ui_source, "Share assigned to the largest cluster", fixed = TRUE)
   expect_match(ui_source, "assignment-field-guide", fixed = TRUE)
-  expect_match(server_source, 'membership_probability = result$fit$membership_probability',
+  expect_match(server_source, "membership_probability = result$fit$membership_probability",
     fixed = TRUE
   )
-  expect_match(server_source, 'if (is.null(model) || isS4(model) || !is.list(model))',
+  expect_match(server_source, "if (is.null(model) || isS4(model) || !is.list(model))",
     fixed = TRUE
   )
-  expect_false(grepl('result$fit$model$unit.classif', server_source, fixed = TRUE))
+  expect_false(grepl("result$fit$model$unit.classif", server_source, fixed = TRUE))
   expect_match(server_source, "build_algorithm_diagnostic_plots(active_result())", fixed = TRUE)
   expect_match(server_source, "analysis$tab_names", fixed = TRUE)
   expect_match(ui_source, 'class = "summary-metric-grid summary-metric-grid-nine"', fixed = TRUE)
@@ -143,7 +143,7 @@ test_that("the README hierarchical overview is reproducible", {
   artifact <- readRDS(test_path("..", "..", "results", "demo", "shiny_benchmark.rds"))
   result <- artifact$result
   row <- result$metrics[
-      result$metrics$status == "ok" &
+    result$metrics$status == "ok" &
       result$metrics$representation == "typical_week" &
       result$metrics$algorithm == "hierarchical" &
       result$metrics$k == 3L,

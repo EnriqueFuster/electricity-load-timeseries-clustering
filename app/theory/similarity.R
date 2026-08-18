@@ -115,7 +115,8 @@ theory_similarity <- function(entry) {
       "representation rather than through a separately selected distance."
     ), paste0(
       "GMM fitting uses component likelihood, while common validation compares observations ",
-      "in the fitted feature embedding. Autoencoder clustering applies Euclidean distance after compression."
+      "in the fitted feature embedding. Autoencoder clustering applies Euclidean distance ",
+      "after compression."
     ),
     "Use only when the complete method and its assumptions are evaluated explicitly.",
     "Distances from different learned spaces are not physically interchangeable.",

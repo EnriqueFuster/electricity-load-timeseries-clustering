@@ -191,7 +191,7 @@ output$conclusions <- shiny::renderUI({
       shiny::span("HIGHEST ATYPICALITY"),
       shiny::strong(as.character(review_profile$series_id[[1]])),
       shiny::p(sprintf("Cluster %s · within-cluster percentile %.2f.",
-        review_profile$cluster[[1]], review_profile$atypicality_percentile[[1]]))
+                       review_profile$cluster[[1]], review_profile$atypicality_percentile[[1]]))
     )
   )
 })
