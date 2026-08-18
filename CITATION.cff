@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "electricity-load-timeseries-clustering"
+type: software
+authors:
+  - given-names: Enrique
+    family-names: Fuster-Palop
+version: 0.1.0
+date-released: 2026-08-10
+license: MIT

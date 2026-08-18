@@ -1,0 +1,37 @@
+Package: electricityloadtimeseriesclustering
+Type: Project
+Title: Electricity Load Time-Series Clustering
+Version: 0.1.0
+Authors@R: person(
+    "Enrique", "Fuster-Palop",
+    role = c("aut", "cre"),
+    email = "enriquefusterpalop@gmail.com"
+  )
+Description: Reproducible load-curve validation, representation, clustering,
+    evaluation, batch processing and interactive exploration.
+License: MIT
+Encoding: UTF-8
+Imports:
+    bslib,
+    bsicons,
+    cluster,
+    DT,
+    dbscan,
+    dtwclust,
+    ggplot2,
+    gridExtra,
+    jsonlite,
+    kohonen,
+    mclust,
+    plotly,
+    proxy,
+    Rcatch22,
+    shiny,
+    torch,
+    yaml
+Suggests:
+    lintr,
+    renv,
+    rsconnect,
+    styler,
+    testthat

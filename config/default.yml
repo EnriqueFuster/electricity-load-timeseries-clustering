@@ -1,0 +1,64 @@
+input:
+  pattern: "\\.csv$"
+  timestamp_column: timestamp
+  value_column: kWh
+  series_id_column: null
+  delimiter: ","
+  timezone: UTC
+quality:
+  max_missing_pct: 10
+  require_complete_natural_year: true
+  complete_year_max_missing_pct: 2
+  warning_missing_pct: 2
+  min_coverage_days: 365
+  negative_values: exclude
+preprocessing:
+  aggregation: median
+  normalization: zscore
+  imputation: linear
+  pca_explained_variance: 0.95
+  pca_max_components: 30
+  clr_zero_replacement_fraction: 0.5
+privacy:
+  anonymize_series_ids: false
+  id_prefix: profile
+modeling:
+  experiments:
+    - {representation: typical_week, recipe: kmeans_euclidean}
+    - {representation: typical_week, recipe: pam_dtw}
+    - {representation: typical_week, recipe: dtw_hclust}
+    - {representation: typical_week, recipe: soft_dtw}
+    - {representation: seasonal_daypart, recipe: kmeans_euclidean}
+    - {representation: seasonal_daypart, recipe: som_euclidean}
+    - {representation: behavioral_features, recipe: pam_manhattan}
+    - {representation: behavioral_features, recipe: gmm_model}
+    - {representation: behavioral_features, recipe: hdbscan_euclidean}
+    - {representation: pca_typical_week, recipe: kmeans_euclidean}
+    - {representation: pca_typical_week, recipe: deep_autoencoder}
+    - {representation: pca_annual_unit_sum, recipe: pam_euclidean}
+    - {representation: pca_annual_clr, recipe: pam_euclidean}
+    - {representation: pca_annual_zscore, recipe: pam_euclidean}
+    - {representation: catch22_global, recipe: pam_euclidean}
+    - {representation: catch22_seasonal, recipe: pam_euclidean}
+    - {representation: catch24_seasonal, recipe: pam_euclidean}
+  k_mode: auto
+  fixed_k: 3
+  k_min: 2
+  k_max: 6
+  repeats: 5
+  seed: 4107
+  dtw_window_size: 12
+  min_cluster_share: 0.05
+  min_stability: 0.0
+  min_silhouette: 0.0
+  max_noise_share: 0.20
+  selection_weights: {silhouette: 0.55, stability: 0.30, balance: 0.15}
+  advanced:
+    hdbscan_min_points: 3
+    soft_dtw_gamma: 0.05
+    som_iterations: 100
+    deep_latent_dimensions: 4
+    deep_epochs: 80
+output:
+  save_models: true
+
